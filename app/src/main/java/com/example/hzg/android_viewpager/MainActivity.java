@@ -2,16 +2,11 @@ package com.example.hzg.android_viewpager;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.ViewParent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager pager;
     private List<String> titleList;
     private PagerTabStrip tab;
+    private List<Fragment>fragmentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
         viewList.add(view3);
         viewList.add(view4);
 
+        fragmentList = new ArrayList<Fragment>();
+        fragmentList.add(new Fragment1());
+        fragmentList.add(new Fragment2());
+        fragmentList.add(new Fragment3());
+        fragmentList.add(new Fragment4());
+
         titleList = new ArrayList<String>();
         titleList.add("第一页");
         titleList.add("第二页");
@@ -48,9 +50,13 @@ public class MainActivity extends AppCompatActivity {
         tab.setDrawFullUnderline(false);
         tab.setTextColor(Color.RED);
 
-        MyPagerAdapter adapter = new MyPagerAdapter(viewList,titleList);
         pager= (ViewPager) findViewById(R.id.pager);
-        pager.setAdapter(adapter);
+//        MyPagerAdapter adapter = new MyPagerAdapter(viewList,titleList);
+//        pager.setAdapter(adapter);
+//        MyFragementPagerAdapter adapter1 = new MyFragementPagerAdapter(getSupportFragmentManager(), fragmentList, titleList);
+//        pager.setAdapter(adapter1);
+        MyFragementPagerAdapter2 adapter2 = new MyFragementPagerAdapter2(getSupportFragmentManager(), fragmentList, titleList);
+        pager.setAdapter(adapter2);
     }
 
 }
