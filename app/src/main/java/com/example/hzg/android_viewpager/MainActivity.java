@@ -7,11 +7,12 @@ import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
     private List<View> viewList;
     private ViewPager pager;
     private List<String> titleList;
@@ -57,6 +58,22 @@ public class MainActivity extends AppCompatActivity {
 //        pager.setAdapter(adapter1);
         MyFragementPagerAdapter2 adapter2 = new MyFragementPagerAdapter2(getSupportFragmentManager(), fragmentList, titleList);
         pager.setAdapter(adapter2);
+        pager.setOnPageChangeListener(this);
     }
 
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        Toast.makeText(this, "这是第"+(position+1)+"个界面", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
 }
